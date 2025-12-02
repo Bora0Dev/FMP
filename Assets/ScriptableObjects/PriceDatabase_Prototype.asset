@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43dbe87cda7eb342b3fcc13bec3bb5e, type: 3}
+  m_Name: PriceDatabase_Prototype
+  m_EditorClassIdentifier: 
+  townPrices:
+  - town: 0
+    grainPrice: 10
+    ironPrice: 25
+    spicesPrice: 50
+    clothPrice: 20
+  - town: 1
+    grainPrice: 25
+    ironPrice: 10
+    spicesPrice: 45
+    clothPrice: 23
+  - town: 2
+    grainPrice: 20
+    ironPrice: 20
+    spicesPrice: 10
+    clothPrice: 40
+  travelCosts:
+  - fromTown: 0
+    toTown: 1
+    cost: 10
+  - fromTown: 0
+    toTown: 2
+    cost: 20
+  - fromTown: 1
+    toTown: 2
+    cost: 20
+  - fromTown: 2
+    toTown: 1
+    cost: 20
+  - fromTown: 1
+    toTown: 0
+    cost: 10
+  - fromTown: 2
+    toTown: 0
+    cost: 20
