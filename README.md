@@ -133,7 +133,32 @@ Developing Merchant’s Road was not merely an exercise in coding; it was a dial
 ### Overview
 The implementation of *Merchant’s Road* required translating the high-level theoretical concepts of scarcity, interdependence, and feedback loops into concrete C# code within the Unity engine. The system is built on a modular architecture, separating the **Data Layer** (Economy Models), the **Logic Layer** (Managers), and the **Presentation Layer** (UI). This separation ensures that the economic simulation can run independently of the visual representation, allowing for background simulation and easier testing.
 
-### 1. Telemetry and Data Collection System
+### 1. Core Architecture: The Game Loop
+At the heart of *Merchant's Road* lies the `GameManager`, a Singleton that orchestrates the entire application lifecycle. Unlike a frame-based action game, the "Game Loop" here is **event-driven**, reacting to player decisions rather than continuous physics simulation.
+
+#### The GameManager (`GameManager.cs`)
+This class acts as the central hub, maintaining the "Source of Truth" for the game state:
+*   **State Management**: It holds critical variables like `currentTown`, `gold`, and the reference to the `InventorySystem`.
+*   **Transaction Logic**: Methods like `TryBuy(GoodType)` and `TrySell(GoodType)` encapsulate the validation logic. They check if the player has enough gold and capacity *before* executing a trade, ensuring the economy remains robust.
+*   **Travel Logic**: `TryTravelTo(TownId)` handles the transition between states. It deducts the travel cost (simulating the "energy constraint") and triggers the `TownBackgroundController` to update the visual context.
+
+#### The Update Cycle
+The flow of data follows a strict unidirectional pattern to ensure consistency:
+1.  **Input**: Player clicks "Buy Grain" in the UI.
+2.  **Validation**: `GameManager` checks `HasEnoughGold()` and `HasCartSpace()`.
+3.  **Execution**: If valid, `gold` is deducted and `InventorySystem.Add()` is called.
+4.  **Notification**: The `HUDController` is explicitly called to `RefreshHUD()`, updating the visual display to match the new data.
+
+### 2. Inventory Management
+The inventory is not just a list of items; it is a system designed to enforce the "Constraints Produce Depth" principle.
+
+#### The Inventory System (`InventorySystem.cs`)
+To keep the architecture clean, inventory logic is separated from the `GameManager` into a pure C# class (`InventorySystem`).
+*   **Data Structure**: A `Dictionary<GoodType, int>` is used instead of a list. This allows for O(1) lookup times and easy extensibility—adding a new `GoodType` requires no changes to the inventory logic.
+*   **Capacity Calculation**: The `GetCapacityUsed()` method dynamically calculates the total weight of the cart by iterating through the dictionary: `TotalWeight = Sum(Quantity * UnitSize)`.
+*   **Decoupling**: By making this a non-MonoBehaviour class, the inventory logic is decoupled from the Unity Engine, making it easier to unit test and preventing "God Class" bloat in the `GameManager`.
+
+### 3. Telemetry and Data Collection System
 To validate the design decisions discussed in the research section, a robust telemetry system was implemented. This system captures both objective performance metrics and subjective user feedback, creating a feedback loop for the developer similar to the economic feedback loops within the game.
 
 
@@ -154,7 +179,7 @@ While telemetry captures *what* happened, the survey system captures *how* the p
 *   **Consent Management**: Ethical data collection is enforced via a `consentToggle`. The boolean value is passed to the `TelemetryManager`, ensuring that no data is processed without explicit user permission.
 *   **Data Flow**: When the user clicks "Submit", the controller extracts values from the UI elements and passes them to `TelemetryManager.Instance.SubmitFeedback()`. This decoupling means the UI doesn't need to know *how* the data is saved, only *where* to send it.
 
-### 2. The Market System and UI Interaction
+### 4. The Market System and UI Interaction
 The economic simulation is visualized through the `TownMarketUI` class. This script serves as the bridge between the underlying `PriceDatabase` (the simulation) and the player (the interaction).
 
 
@@ -172,7 +197,7 @@ The actual transaction logic is encapsulated in the `TradeDialog`. This componen
 2.  **Inventory Space**: Does the player have enough weight capacity? (Enforcing the "Constraints Produce Depth" principle).
 3.  **Town Inventory**: Does the town have the item in stock?
 
-### 3. Systemic Design Patterns
+### 5. Systemic Design Patterns
 The codebase relies heavily on **Manager Classes** and **Singletons** (`GameManager`, `TelemetryManager`) to maintain global state. This is essential for an economy simulation, as the state of the world (prices, town inventories) must persist independently of the player's location.
 
 The use of **ScriptableObjects** (implied by the `GoodType` and database structure) allows for data-driven design. New items can be added to the economy by simply creating a new data asset, without rewriting code. This extensibility is key for future iterations.
