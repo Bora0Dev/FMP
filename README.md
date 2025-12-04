@@ -1,18 +1,19 @@
 # Merchant's Road: A Medieval Virtual Economy
 
+
+
 ## Research: Designing a Medieval Virtual Economy
 *A Reflective Analysis of Virtual Economies and Systems Design in Mount & Blade II: Bannerlord*
 
-### Introduction
 The development of Merchant’s Road, my medieval trading simulator, has been a transformative journey that fundamentally reshaped my understanding of game design, player agency, and the intricate architecture of economic systems. When I initially conceptualized the project, my ambition was relatively modest: I sought to create a satisfying, low-friction loop in which the player travelled between distinct towns, purchased goods at low prices, and sold them for profit elsewhere. This early prototype, while functional, served primarily as a proof of concept. It demonstrated the immediate dopamine appeal of the "buy low, sell high" fantasy, but it simultaneously exposed a critical shallowness in the design. It became evident that a trading mechanic cannot exist in a vacuum; the satisfaction of trade is not derived merely from the transaction itself, but from the context in which that transaction occurs.
+
+
 
 I became increasingly captivated by the potential of a dynamic, living economy—a system that breathes, reacts, and resists. My focus shifted from designing a game about "trading" to designing a simulation of "an economy." I wanted to build an ecosystem where markets fluctuate based on internal logic rather than scripted events, where resources become scarce due to systemic pressures, and where the player is not the center of the universe but rather a small actor adapting to a volatile environment. To achieve this, I had to move beyond simple arithmetic and engage with complex systems theory.
 
 To build such a system, I needed a robust theoretical foundation. Relying on intuition was insufficient for creating a self-regulating economy that could withstand player exploitation. Consequently, understanding virtual economies, systemic design, emergence, and the historical realities of medieval economic structures became essential. Academic research provided the necessary frameworks to articulate why certain design decisions mattered—transforming mechanics from functional tools into expressive instruments. Simultaneously, studying Mount & Blade II: Bannerlord offered a concrete, industry-standard example of a successful medieval trading economy. It served as a masterclass in how theoretical concepts—such as supply chains, price elasticity, and risk assessment—can be applied in a commercial product.
 
 This essay offers a comprehensive reflection on how academic debates, practical analysis, and creative experimentation shaped the development of Merchant’s Road. The Literature Review explores foundational scholarship on virtual economies, systemic game design, feedback loops, and medieval economic history. The Case Study applies these theoretical frameworks to Bannerlord, deconstructing its algorithms and explaining how its successes and limitations influenced my own design. The Reflection discusses the iterative lessons learned through development, highlighting how theory helped me interpret and refine my creative choices. The Conclusion summarises how this research supported the intellectual and practical development of my final major project.
-
-### Literature Review
 
 #### 1. Virtual Economies: Scarcity, Value, and Emergence
 To design a convincing economy, one must first understand what gives digital objects value. Edward Castronova’s seminal work, Synthetic Worlds, provides the bedrock for this understanding. Castronova argues that virtual worlds operate as functioning economic systems where value is not arbitrary but is generated through the interplay of scarcity, labour, production, and risk (Castronova, 2005). This challenged my initial, somewhat naive assumption that game prices should be static or determined solely by a difficulty curve. Castronova’s analysis suggests that in a "synthetic" world, the economy is a membrane between the real and the virtual; the time a player invests (labour) converts into virtual capital.
@@ -51,10 +52,12 @@ Carlo Cipolla highlights the "energy constraint" of the era (Cipolla, 1980). Bef
 
 Fernand Braudel argues that medieval economies were shaped by the longue durée—slow-moving structural forces rather than rapid cycles (Braudel, 1982). This inspired me to design economic states that develop gradually. A town does not go from "Prosperous" to "Destitute" overnight. It is a slow decay, visible to the observant player, allowing them to anticipate market crashes before they happen.
 
-### Case Study: Mount & Blade II: Bannerlord
 
-#### Overview
+#### Mount & Blade II: Bannerlord
 Mount & Blade II: Bannerlord, developed by TaleWorlds Entertainment, presents one of the most sophisticated dynamic economies in modern gaming. It serves as an ideal case study because it does not "fake" its economy; it simulates it. Villages generate raw materials based on geography; villagers physically carry these goods to towns; towns consume them or refine them into luxury goods (tools, velvet, wine); workshops require inputs to function; and caravans move resources between regions to smooth out price disparities. When political instability creates war, these physical supply chains are disrupted, causing organic price inflation and scarcity.
+
+[![Top 6 Ways To Make Money In Bannerlord Patch 1.2](https://img.youtube.com/vi/KI_de6n5xX8/0.jpg)](http://www.youtube.com/watch?v=KI_de6n5xX8)
+*Strat Gaming Guides (2023) - Top 6 Ways To Make Money In Bannerlord Patch 1.2*
 
 
 
@@ -76,6 +79,15 @@ To understand how to replicate this, I analyzed the specific technical layers of
     *   *Passive Consumption*: The population eats food daily.
     *   *Industrial Consumption*: Workshops (Secondary Sector) consume raw materials (Olives) and delete them to spawn refined goods (Oil). This constant destruction of goods creates the vacuum that pulls trade caravans toward the town.
 
+    [![How to Improve Your Workshop Income](https://img.youtube.com/vi/gFVtYGHEHXA/0.jpg)](http://www.youtube.com/watch?v=gFVtYGHEHXA)
+    *TaleWorlds Entertainment (2025) - How to Improve Your Workshop Income*
+
+    [![ULTIMATE Warehouse Money Making Strategy Guide](https://img.youtube.com/vi/nHLCobaMMNc/0.jpg)](http://www.youtube.com/watch?v=nHLCobaMMNc)
+    *Hero (2023) - ULTIMATE Warehouse Money Making Strategy Guide*
+
+    [![Workshop guide bannerlord](https://img.youtube.com/vi/zKL5mblna4o/0.jpg)](http://www.youtube.com/watch?v=zKL5mblna4o)
+    *Bhasty (2024) - Workshop guide bannerlord*
+
 3. **Supply–Demand Pricing Algorithm**: Prices are not static. They update daily using a localized Supply/Demand curve. `Price = BaseValue * (Demand / Supply)^Factor`. If Supply is high, the fraction is small, and Price drops. If Supply is low (e.g., after a raid), Price skyrockets. This algorithm is the heartbeat of the game.
 
 4. **Caravan Agents (AI)**: The game uses autonomous agents (Caravans) to balance the economy. These agents do not cheat; they scan known prices, calculate the best route, and travel physically. If they are destroyed by bandits, the goods are deleted from the world, creating genuine scarcity.
@@ -93,6 +105,9 @@ Analyzing Bannerlord provided a blueprint, but also highlighted areas I wanted t
 *   **Risk as a Commodity**: Bannerlord treats safety as a luxury. I adopted this. Safe routes have low profit margins (because AI caravans flood them). Dangerous routes (bandit territory) have high margins. This creates a "Risk vs. Reward" slider for the player.
 *   **Slow Travel**: Bannerlord’s map movement is a distinct game phase. I replicated this, ensuring that the passage of time is the primary resource the player spends.
 *   **Legibility**: Bannerlord sometimes hides its math too well. I decided to make Merchant’s Road more transparent, using visual indicators (arrows, color coding) to show price trends, ensuring the system is "readable" as per Juul’s theory.
+
+[![Economy, Workshop & Caravans CHANGED in Bannerlord Patch 1.3](https://img.youtube.com/vi/IR7eHz6YFfg/0.jpg)](http://www.youtube.com/watch?v=IR7eHz6YFfg)
+*STAN Games & Tutorials (2025) - Economy, Workshop & Caravans CHANGED in Bannerlord Patch 1.3*
 
 ### Reflection on Practice
 Developing Merchant’s Road was not merely an exercise in coding; it was a dialogue between the theoretical concepts I studied and the practical reality of game engine constraints. This process reshaped my identity as a designer.
@@ -121,6 +136,8 @@ The implementation of *Merchant’s Road* required translating the high-level th
 ### 1. Telemetry and Data Collection System
 To validate the design decisions discussed in the research section, a robust telemetry system was implemented. This system captures both objective performance metrics and subjective user feedback, creating a feedback loop for the developer similar to the economic feedback loops within the game.
 
+
+
 #### The Telemetry Manager (`TelemetryManager.cs`)
 The `TelemetryManager` is the core of this system. It is implemented as a **Singleton**, ensuring that one persistent instance exists throughout the game's lifecycle (`DontDestroyOnLoad`). This is crucial for tracking a session that spans multiple scenes (e.g., moving from the Main Menu to the World Map to a Town Scene).
 
@@ -139,6 +156,8 @@ While telemetry captures *what* happened, the survey system captures *how* the p
 
 ### 2. The Market System and UI Interaction
 The economic simulation is visualized through the `TownMarketUI` class. This script serves as the bridge between the underlying `PriceDatabase` (the simulation) and the player (the interaction).
+
+
 
 #### Market Interface (`TownMarketUI.cs`)
 The market UI is designed to be "readable," addressing the issue of legibility raised in the research section.
@@ -159,19 +178,6 @@ The codebase relies heavily on **Manager Classes** and **Singletons** (`GameMana
 The use of **ScriptableObjects** (implied by the `GoodType` and database structure) allows for data-driven design. New items can be added to the economy by simply creating a new data asset, without rewriting code. This extensibility is key for future iterations.
 
 ---
-
-### Next Steps
-
-The current iteration of *Merchant’s Road* successfully implements the core loop of travel, trade, and economic fluctuation. However, to fully realize the vision of a "living economy," several key features are planned for the next development cycle:
-
-1.  **AI Competitors**: Currently, the economy reacts to the player and abstract system rules. The next step is to introduce AI caravans that physically travel the map. These agents will buy low and sell high, competing directly with the player for resources. This will introduce the "Interdependence" discussed by Castronova on a more granular level.
-2.  **Dynamic Event System**: While random events exist, they are currently simple text notifications. Future updates will visualize these events—e.g., a "Famine" event visually changing the town sprite to look dilapidated, or a "War" event spawning visible armies on the map.
-3.  **Advanced Telemetry Visualization**: The current telemetry is saved as raw JSON. A future tool will be built to parse these logs and generate heatmaps of player death locations and trade routes, providing visual data to balance the map design.
-4.  **Save/Load System**: Implementing a robust serialization system for the entire game state (not just telemetry) to allow for longer play sessions.
-5.  **Cloud Persistence with Supabase**: Migrating player progression tracking to a Supabase database. This will enable cross-device saves, global leaderboards, and persistent world states, moving beyond local JSON serialization.
-
-### Bibliography
-
 *   Bloch, M. (1961) *Feudal Society*. London: Routledge.
 *   Bogost, I. (2007) *Persuasive Games: The Expressive Power of Videogames*. Cambridge, MA: MIT Press.
 *   Braudel, F. (1982) *Civilization and Capitalism, 15th-18th Century, Vol. I: The Structures of Everyday Life*. New York: Harper & Row.
@@ -184,5 +190,10 @@ The current iteration of *Merchant’s Road* successfully implements the core lo
 *   Gee, J. P. (2003) *What Video Games Have to Teach Us About Learning and Literacy*. New York: Palgrave Macmillan.
 *   Juul, J. (2005) *Half-Real: Video Games between Real Rules and Fictional Worlds*. Cambridge, MA: MIT Press.
 *   Lehdonvirta, V. (2010) ‘Virtual Economies: Theory and Practice’, in *Sociological Research Online*.
+*   Bhasty (2024) *Workshop guide bannerlord*. Available at: http://www.youtube.com/watch?v=zKL5mblna4o (Accessed: 04 December 2025).
+*   Hero (2023) *ULTIMATE Warehouse Money Making Strategy Guide - Bannerlord*. Available at: http://www.youtube.com/watch?v=nHLCobaMMNc (Accessed: 04 December 2025).
 *   Salen, K. and Zimmerman, E. (2004) *Rules of Play: Game Design Fundamentals*. Cambridge, MA: MIT Press.
+*   STAN Games & Tutorials (2025) *Economy, Workshop & Caravans CHANGED in Bannerlord Patch 1.3*. Available at: http://www.youtube.com/watch?v=IR7eHz6YFfg (Accessed: 04 December 2025).
+*   Strat Gaming Guides (2023) *Top 6 Ways To Make Money In Bannerlord Patch 1.2*. Available at: http://www.youtube.com/watch?v=KI_de6n5xX8 (Accessed: 04 December 2025).
 *   TaleWorlds Entertainment (2020) *Mount & Blade II: Bannerlord* [Video Game]. Ankara: TaleWorlds Entertainment.
+*   TaleWorlds Entertainment (2025) *How to Improve Your Workshop Income in Mount & Blade II: Bannerlord*. Available at: http://www.youtube.com/watch?v=gFVtYGHEHXA (Accessed: 04 December 2025).
