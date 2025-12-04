@@ -56,14 +56,12 @@ Fernand Braudel argues that medieval economies were shaped by the longue durée�
 #### Overview
 Mount & Blade II: Bannerlord, developed by TaleWorlds Entertainment, presents one of the most sophisticated dynamic economies in modern gaming. It serves as an ideal case study because it does not "fake" its economy; it simulates it. Villages generate raw materials based on geography; villagers physically carry these goods to towns; towns consume them or refine them into luxury goods (tools, velvet, wine); workshops require inputs to function; and caravans move resources between regions to smooth out price disparities. When political instability creates war, these physical supply chains are disrupted, causing organic price inflation and scarcity.
 
-![Mount & Blade II: Bannerlord Campaign Map - Showing caravans and dynamic economy agents](INSERT_CAMPAIGN_MAP_IMAGE_HERE)
-*Figure 1: The Bannerlord campaign map, where caravans and villagers physically transport goods between settlements.*
+
 
 #### Applying Academic Theories to Bannerlord
 Castronova’s theory of interdependent virtual economies is clearly visible in Bannerlord’s operational logic. The economy is a closed loop. When a village is raided by a lord, its production ceases. This is not just a visual effect; the database updates. The nearby town stops receiving grain. Its food stocks deplete. The garrison begins to starve and die. The prosperity of the town drops, reducing tax income for the owner. This systemic ripple effect validates Castronova's assertion that virtual worlds function best as interconnected webs.
 
-![Mount & Blade II: Bannerlord Trading Interface - Showing price fluctuations and inventory limits](INSERT_TRADING_INTERFACE_IMAGE_HERE)
-*Figure 2: The trading interface demonstrating the relationship between supply, demand, and price.*
+
 
 Lehdonvirta’s emphasis on constraints is evident in the inventory and travel mechanics. Players and AI alike are limited by "Carry Weight" and "Party Speed." A merchant cannot simply buy all the grain in the world; they are limited by the physical capacity of their mules. This constraint creates the core decision-making loop: "Do I carry high-volume/low-margin goods (grain) or low-volume/high-margin goods (jewelry)?"
 
